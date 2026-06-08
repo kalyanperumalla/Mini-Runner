@@ -70,11 +70,11 @@ body{
 
     position:absolute;
     left:60px;
-    bottom:60px;
+    bottom:30px;
 
     background-size:contain;
     background-repeat:no-repeat;
-    background-position:center;
+    background-position:center bottom;
 }
 
 .obstacle{
