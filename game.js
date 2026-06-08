@@ -11,6 +11,9 @@ const restartBtn = document.getElementById("restartBtn");
 const clouds = document.getElementById("clouds");
 const mountains = document.getElementById("mountains");
 
+const gameOverTitle = document.getElementById("gameOverTitle");
+
+
 /* ---------- Runner Animation ---------- */
 
 const runnerFrames = [
@@ -320,16 +323,25 @@ function update() {
 
     requestAnimationFrame(update);
 }
-function endGame() {
 
-    clearInterval(runnerAnimation);
+function endGame() {
+    if (gameOver) return;
+
+ clearInterval(runnerAnimation);
+runnerAnimation = null;
 
     if (score >= 500) {
+
+        gameOverTitle.textContent =
+        "🏆 Amazing Run! Score 500+";
 
         clapSound.currentTime = 0;
         clapSound.play();
 
     } else {
+
+        gameOverTitle.textContent =
+        "Game Over";
 
         gameOverSound.currentTime = 0;
         gameOverSound.play();
@@ -339,7 +351,7 @@ function endGame() {
 
     game.classList.add("shake");
 
-    if (score > highScore) {
+    if(score > highScore){
 
         localStorage.setItem(
             "runnerHighScore",
@@ -347,10 +359,12 @@ function endGame() {
         );
     }
 
-    setTimeout(() => {
+    setTimeout(()=>{
 
         gameOverScreen.style.display =
-            "flex";
+        "flex";
 
-    }, 300);
+    },300);
 }
+
+  
