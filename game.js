@@ -50,6 +50,9 @@ const coinSound =
 const gameOverSound =
     new Audio("sounds/gameover.mp3");
 
+const clapSound =
+    new Audio("sounds/clap.mp3");
+
 /* ---------- Variables ---------- */
 
 let started = false;
@@ -317,12 +320,20 @@ function update() {
 
     requestAnimationFrame(update);
 }
-
 function endGame() {
 
     clearInterval(runnerAnimation);
 
-    gameOverSound.play();
+    if (score >= 500) {
+
+        clapSound.currentTime = 0;
+        clapSound.play();
+
+    } else {
+
+        gameOverSound.currentTime = 0;
+        gameOverSound.play();
+    }
 
     gameOver = true;
 
